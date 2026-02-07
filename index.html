@@ -3,98 +3,106 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Propose Day🌹</title>
+    <title>For You 🌹</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             margin: 0;
             height: 100vh;
+            /* Using -webkit-fill-available for mobile browser bars */
+            height: -webkit-fill-available; 
             background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            touch-action: manipulation;
+            touch-action: none; /* Prevents scrolling while chasing the button */
         }
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(10px);
-            padding: 40px 20px;
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(196, 0, 47, 0.15);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(196, 0, 47, 0.1);
             width: 90%;
-            max-width: 400px;
-            position: relative;
+            max-width: 350px;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
-            color: #333;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
+            color: #666;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
+            letter-spacing: 2px;
+            margin: 0 0 10px 0;
         }
 
         .subtitle {
             font-family: 'Playfair Display', serif;
             font-style: italic;
             font-weight: 700;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: #c4002f;
-            display: block;
+            line-height: 1.2;
             margin-bottom: 30px;
         }
 
-        /* The boundary for the hopping button */
-        .buttons {
+        /* The playground area for buttons on mobile */
+        .buttons-wrapper {
             position: relative;
             width: 100%;
-            height: 250px;
-            border: 1px dashed rgba(196, 0, 47, 0.2);
-            border-radius: 20px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         button {
             font-family: 'Poppins', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 15px 35px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             position: absolute;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            white-space: nowrap;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
 
         #yesBtn {
             background: #c4002f;
             color: #fff;
-            left: 50%;
-            top: 50%;
-            transform: translate(-120%, -50%);
             z-index: 100;
+            /* Centered scale reference point */
+            transform-origin: center; 
         }
 
         #noBtn {
             background: #fff;
             color: #c4002f;
             border: 2px solid #c4002f;
-            left: 50%;
-            top: 50%;
-            transform: translate(20%, -50%);
-            z-index: 10;
+            z-index: 50;
+            font-size: 0.9rem;
+            padding: 12px 25px;
+            /* Move slightly away from Yes initially */
+            margin-top: 100px; 
         }
 
         #celebration-overlay {
@@ -102,62 +110,51 @@
             position: fixed;
             inset: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            animation: fadeIn 0.5s ease;
+            text-align: center;
+            padding: 20px;
         }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         #message-text {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #c4002f;
-            text-align: center;
             font-weight: 700;
+            margin: 0;
         }
 
-        .float {
+        .float-emoji {
             position: fixed;
             bottom: -50px;
-            animation: rise linear forwards;
             z-index: 1001;
+            animation: rise linear forwards;
         }
 
-        @keyframes rise { to { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
-
-        .sparkle {
-            position: absolute;
-            background: #ffd700;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #ffd700;
-            pointer-events: none;
-            animation: sparkleAnim 1.5s infinite;
+        @keyframes rise {
+            to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
-
-        @keyframes sparkleAnim { 0% { opacity:0; } 50% { opacity:1; } 100% { opacity:0; } }
     </style>
 </head>
 
 <body>
 
     <div class="container">
-        <h1>Will you be my</h1>
-        <span class="subtitle">thakudu forever?🌹</span>
+        <h1>Hey beautiful,</h1>
+        <span class="subtitle">Will you be my thakudu forever?🌹</span>
 
-        <div class="buttons" id="buttonArea">
-            <button id="yesBtn">Yes ❤️</button>
+        <div class="buttons-wrapper" id="buttonArea">
+            <button id="yesBtn">YES! ❤️</button>
             <button id="noBtn">Nope 😜</button>
         </div>
     </div>
 
     <div id="celebration-overlay">
-        <p id="message-text">🎉 SHE SAID YESSS! 🎉</p>
-        <p style="margin-top: 20px; font-weight: 600; color: #666;">I KNEW IT! ❤️🌹✨</p>
+        <p id="message-text">SHE SAID YES! 💍</p>
+        <p style="font-weight: 600; color: #888; margin-top: 15px;">I knew you'd click that. 😉</p>
+        <p style="font-size: 3rem;">🌹❤️✨</p>
     </div>
 
     <script>
@@ -170,47 +167,48 @@
         let index = 0;
 
         const nopeTexts = [
-            "In your dreams! ☁️", 
-            "Not in a million years 🛑", 
-            "Keep dreaming! 💭", 
-            "Error 404: 'No' not found ❌", 
-            "The answer is always Yes 🍷", 
-            "I refuse! 🙅‍♀️", 
+            "Nice try! 😉", 
+            "Not likely 🛑", 
+            "Keep dreaming 💭", 
+            "Nope! ❌", 
+            "Try again! 🍷", 
+            "Je refuse! 🙅‍♀️", 
             "Impossible! 🚫", 
             "No chance 🔒",
-            "Forget about it! ✨"
+            "Too slow! ✨"
         ];
 
-        function handleHopping() {
+        function handleHopping(e) {
+            // Prevent zooming/accidental clicks on mobile
+            if (e) e.preventDefault();
+
             const areaRect = area.getBoundingClientRect();
             const btnRect = noBtn.getBoundingClientRect();
 
-            // Calculate movement limits within the buttonArea
+            // Mobile safe boundaries
             const maxX = areaRect.width - btnRect.width;
             const maxY = areaRect.height - btnRect.height;
 
             const randomX = Math.random() * maxX;
             const randomY = Math.random() * maxY;
 
-            // Move No Button
-            noBtn.style.transform = "none";
+            // Move No Button within the wrapper
             noBtn.style.left = randomX + "px";
             noBtn.style.top = randomY + "px";
+            noBtn.style.margin = "0"; // Remove initial centering margin
 
-            // Update No Text
+            // Update Text
             noBtn.textContent = nopeTexts[index];
             index = (index + 1) % nopeTexts.length;
 
-            // GROW THE YES BUTTON
-            yesScale += 0.2; // Grows by 20% each time
-            yesBtn.style.transform = `translate(-120%, -50%) scale(${yesScale})`;
+            // Grow Yes Button (Scaled from center)
+            yesScale += 0.25;
+            yesBtn.style.transform = `scale(${yesScale})`;
         }
 
+        // Optimized for touch and mouse
+        noBtn.addEventListener("touchstart", handleHopping);
         noBtn.addEventListener("mouseover", handleHopping);
-        noBtn.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-            handleHopping();
-        });
 
         yesBtn.addEventListener("click", () => {
             overlay.style.display = "flex";
@@ -218,30 +216,21 @@
         });
 
         function startCelebration() {
-            const emojis = ["❤️", "🌹", "✨", "💕"];
-            for (let i = 0; i < 100; i++) {
+            const emojis = ["❤️", "🌹", "💎", "✨", "💕"];
+            for (let i = 0; i < 80; i++) {
                 setTimeout(() => {
                     const el = document.createElement("div");
-                    el.className = "float";
+                    el.className = "float-emoji";
                     el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                     el.style.left = Math.random() * 100 + "vw";
-                    el.style.fontSize = (20 + Math.random() * 30) + "px";
-                    el.style.animationDuration = (3 + Math.random() * 4) + "s";
+                    el.style.fontSize = (25 + Math.random() * 20) + "px";
+                    el.style.animationDuration = (3 + Math.random() * 3) + "s";
                     document.body.appendChild(el);
-                    setTimeout(() => el.remove(), 5000);
-                }, i * 40);
+                    setTimeout(() => el.remove(), 6000);
+                }, i * 60);
             }
         }
-
-        // Add background sparkles
-        setInterval(() => {
-            const s = document.createElement("div");
-            s.className = "sparkle";
-            s.style.left = Math.random() * 100 + "vw";
-            s.style.top = Math.random() * 100 + "vh";
-            document.body.appendChild(s);
-            setTimeout(() => s.remove(), 1500);
-        }, 400);
     </script>
 </body>
+
 </html>
