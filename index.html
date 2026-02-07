@@ -4,283 +4,146 @@
 <head>
     <meta charset="UTF-8">
     <title>Propose Day🌹</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- Paris-inspired Romantic Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Poppins:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
             margin: 0;
             height: 100vh;
-            /* Fallback or overlay gradient + generated background */
-            background: linear-gradient(rgba(196, 0, 47, 0.3), rgba(255, 255, 255, 0.1)), url('paris_bg.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
             font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             touch-action: manipulation;
-            overscroll-behavior: none;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Dim overlay for better text contrast if bg is bright */
-        .overlay-dim {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.1);
-            z-index: 1;
-            pointer-events: none;
         }
 
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.85);
-            /* Frosted glass effect */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(196, 0, 47, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            width: 85%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(196, 0, 47, 0.15);
+            width: 90%;
             max-width: 400px;
             position: relative;
             z-index: 10;
-            transition: opacity 0.5s ease;
         }
 
         h1 {
-            color: #c4002f;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
         }
 
         .subtitle {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-weight: 600;
-            font-size: 2rem;
-            color: #b3002d;
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: #c4002f;
             display: block;
-            margin-top: 5px;
-            margin-bottom: 35px;
-            letter-spacing: 0.5px;
+            margin-bottom: 30px;
         }
 
-        /* Area for buttons */
+        /* The boundary for the hopping button */
         .buttons {
             position: relative;
             width: 100%;
             height: 250px;
-            margin: auto;
+            border: 1px dashed rgba(196, 0, 47, 0.2);
+            border-radius: 20px;
         }
 
         button {
             font-family: 'Poppins', sans-serif;
             font-size: 1.1rem;
             font-weight: 600;
-            padding: 14px 30px;
+            padding: 15px 30px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             position: absolute;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             white-space: nowrap;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            letter-spacing: 0.5px;
-        }
-
-        button:active {
-            transform: scale(0.95);
         }
 
         #yesBtn {
-            background: linear-gradient(135deg, #c4002f, #e63946);
+            background: #c4002f;
             color: #fff;
             left: 50%;
             top: 50%;
             transform: translate(-120%, -50%);
-            z-index: 2;
-            border: 2px solid transparent;
+            z-index: 100;
         }
 
         #noBtn {
-            background: rgba(255, 255, 255, 0.95);
+            background: #fff;
             color: #c4002f;
             border: 2px solid #c4002f;
             left: 50%;
             top: 50%;
             transform: translate(20%, -50%);
-            z-index: 3;
+            z-index: 10;
         }
 
-        /* Success Message Modal/Overlay */
         #celebration-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 50;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            inset: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            animation: fadeIn 0.8s ease;
+            animation: fadeIn 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        #message-box {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 50px 30px;
-            border-radius: 30px;
-            text-align: center;
-            box-shadow: 0 30px 80px rgba(196, 0, 47, 0.6);
-            border: 3px solid #c4002f;
-            animation: slideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-            max-width: 90%;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100px) scale(0.8);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         #message-text {
             font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: 700;
             font-size: 3rem;
             color: #c4002f;
-            margin: 0;
-            line-height: 1.3;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-weight: 700;
         }
 
-        /* Golden Sparkles */
-        .sparkle {
-            position: absolute;
-            background: transparent;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            box-shadow: 0 0 8px 2px #ffd700;
-            animation: sparkleAnim 2s infinite alternate;
-            /* slower, more romantic */
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        @keyframes sparkleAnim {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        /* Floating elements */
         .float {
             position: fixed;
             bottom: -50px;
             animation: rise linear forwards;
+            z-index: 1001;
+        }
+
+        @keyframes rise { to { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }
+
+        .sparkle {
+            position: absolute;
+            background: #ffd700;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffd700;
             pointer-events: none;
-            z-index: 100;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            animation: sparkleAnim 1.5s infinite;
         }
 
-        @keyframes rise {
-            to {
-                transform: translateY(-120vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Landscape warning */
-        #landscape-warning {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: #c4002f;
-            color: white;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            flex-direction: column;
-            z-index: 9999;
-            text-align: center;
-            padding: 20px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        @media screen and (orientation: landscape) and (max-height: 500px) {
-            #landscape-warning {
-                display: flex;
-            }
-
-            .container {
-                display: none;
-            }
-        }
+        @keyframes sparkleAnim { 0% { opacity:0; } 50% { opacity:1; } 100% { opacity:0; } }
     </style>
 </head>
 
 <body>
-
-    <div class="overlay-dim"></div>
-
-    <div id="landscape-warning">
-        <span style="font-size: 3rem; margin-bottom: 20px;">�</span>
-        <p>For the best romantic experience,<br>please rotate your phone.</p>
-    </div>
 
     <div class="container">
         <h1>Will you be my</h1>
@@ -292,11 +155,9 @@
         </div>
     </div>
 
-    <!-- Celebration Overlay Section -->
     <div id="celebration-overlay">
-        <div id="message-box">
-            <p id="message-text">🎉🌹SHE SAID YESSSSSS!!!🌹🎉</p>
-        </div>
+        <p id="message-text">🎉 SHE SAID YESSS! 🎉</p>
+        <p style="margin-top: 20px; font-weight: 600; color: #666;">I KNEW IT! ❤️🌹✨</p>
     </div>
 
     <script>
@@ -305,130 +166,82 @@
         const area = document.getElementById("buttonArea");
         const overlay = document.getElementById("celebration-overlay");
 
-        const nopeTexts = [
-            "Nice try! 😉", "Not today 💅", "Try harder! 🏃‍♂️", 
-            "Almost had it 🤏", "Keep dreaming ☁️", "Neverrr 🛑", 
-            "In your dreams 🥖", "Error: No access ❌"
-        ];
-
+        let yesScale = 1;
         let index = 0;
 
-        window.addEventListener("load", () => {
-            const yesRect = yesBtn.getBoundingClientRect();
-            yesBtn.style.width = yesRect.width + 30 + "px";
-            yesBtn.style.height = yesRect.height + "px";
+        const nopeTexts = [
+            "In your dreams! ☁️", 
+            "Not in a million years 🛑", 
+            "Keep dreaming! 💭", 
+            "Error 404: 'No' not found ❌", 
+            "The answer is always Yes 🍷", 
+            "I refuse! 🙅‍♀️", 
+            "Impossible! 🚫", 
+            "No chance 🔒",
+            "Forget about it! ✨"
+        ];
 
-            const noRect = noBtn.getBoundingClientRect();
-            noBtn.style.width = (noRect.width + 40) + "px";
-            noBtn.style.height = noRect.height + "px";
-
-            // Start subtle sparkles in background
-            setInterval(createSparkle, 600);
-        });
-
-        function createSparkle() {
-            const sparkle = document.createElement("div");
-            sparkle.className = "sparkle";
-            sparkle.style.left = Math.random() * 100 + "vw";
-            sparkle.style.top = Math.random() * 100 + "vh";
-            sparkle.style.animationDuration = (Math.random() * 2 + 1) + "s";
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 3000);
-        }
-
-        function hopNoButton(e) {
-            if (e && e.type === 'touchstart') {
-                // e.preventDefault(); // Optional
-            }
-
+        function handleHopping() {
             const areaRect = area.getBoundingClientRect();
             const btnRect = noBtn.getBoundingClientRect();
+
+            // Calculate movement limits within the buttonArea
             const maxX = areaRect.width - btnRect.width;
             const maxY = areaRect.height - btnRect.height;
 
-            const x = Math.random() * maxX;
-            const y = Math.random() * maxY;
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
 
+            // Move No Button
             noBtn.style.transform = "none";
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
 
-            index = (index + 1) % nopeTexts.length;
+            // Update No Text
             noBtn.textContent = nopeTexts[index];
+            index = (index + 1) % nopeTexts.length;
+
+            // GROW THE YES BUTTON
+            yesScale += 0.2; // Grows by 20% each time
+            yesBtn.style.transform = `translate(-120%, -50%) scale(${yesScale})`;
         }
 
-        noBtn.addEventListener("mouseover", hopNoButton);
-        noBtn.addEventListener("touchstart", hopNoButton);
-        noBtn.addEventListener("click", hopNoButton);
+        noBtn.addEventListener("mouseover", handleHopping);
+        noBtn.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            handleHopping();
+        });
 
         yesBtn.addEventListener("click", () => {
-            // Show celebration overlay without removing question
             overlay.style.display = "flex";
-
-            // Launch effects
             startCelebration();
-            requestFullscreen();
         });
 
         function startCelebration() {
-            // Hearts & Tulips & Roses
             const emojis = ["❤️", "🌹", "✨", "💕"];
-            for (let i = 0; i < 70; i++) {
+            for (let i = 0; i < 100; i++) {
                 setTimeout(() => {
                     const el = document.createElement("div");
                     el.className = "float";
                     el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
                     el.style.left = Math.random() * 100 + "vw";
-                    el.style.fontSize = (20 + Math.random() * 35) + "px";
-                    el.style.animationDuration = (4 + Math.random() * 5) + "s";
+                    el.style.fontSize = (20 + Math.random() * 30) + "px";
+                    el.style.animationDuration = (3 + Math.random() * 4) + "s";
                     document.body.appendChild(el);
-                    setTimeout(() => el.remove(), 9000);
-                }, i * 50); // Stagger them slightly
-            }
-
-            // Elegant Fireworks (Gold & Red)
-            const colors = ["#c4002f", "#ffd700", "#ffeb3b", "#ffffff"];
-            for (let i = 0; i < 40; i++) {
-                setTimeout(() => {
-                    const fw = document.createElement("div");
-                    fw.style.position = "fixed";
-                    fw.style.width = "6px";
-                    fw.style.height = "6px";
-                    fw.style.borderRadius = "50%";
-                    fw.style.left = Math.random() * 100 + "vw";
-                    fw.style.top = Math.random() * 100 + "vh";
-                    fw.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    fw.style.boxShadow = `0 0 15px 5px ${fw.style.backgroundColor}`;
-                    fw.style.animation = "explode 0.8s ease-out forwards";
-                    fw.style.zIndex = "999";
-                    document.body.appendChild(fw);
-                    setTimeout(() => fw.remove(), 1000);
-                }, i * 150);
+                    setTimeout(() => el.remove(), 5000);
+                }, i * 40);
             }
         }
 
-        /* Reusing explode animation from previous if not defined in CSS */
-        const styleSheet = document.createElement("style");
-        styleSheet.textContent = `
-            @keyframes explode {
-                0% { transform: scale(1); opacity: 1; }
-                100% { transform: scale(12); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(styleSheet);
-
-        function requestFullscreen() {
-            const el = document.documentElement;
-            if (el.requestFullscreen) {
-                el.requestFullscreen().catch(err => console.log("Fullscreen blocked"));
-            } else if (el.webkitRequestFullscreen) {
-                el.webkitRequestFullscreen();
-            } else if (el.msRequestFullscreen) {
-                el.msRequestFullscreen();
-            }
-        }
+        // Add background sparkles
+        setInterval(() => {
+            const s = document.createElement("div");
+            s.className = "sparkle";
+            s.style.left = Math.random() * 100 + "vw";
+            s.style.top = Math.random() * 100 + "vh";
+            document.body.appendChild(s);
+            setTimeout(() => s.remove(), 1500);
+        }, 400);
     </script>
-
 </body>
-
 </html>
